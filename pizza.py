@@ -1,23 +1,29 @@
-SMALL = 'small'
-MEDIUM = 'medium'
-LARGE = 'large'
+from enum import Enum
+
+
+class PizzaSize(Enum):
+    small: int = 120
+    medium: int = 200
+    large: int = 280
+
+    def __str__(self) -> str:
+        return self.name
+
+    @property
+    def price(self):
+        return self.value
+
+
 class Pizza:
     """A pizza with a size and optional toppings."""
 
     def __init__(self, size):
-        self.size = size
+        self.size: PizzaSize = size
         self.toppings = []
 
     def get_price(self):
         """Price of pizza depends on size and number of toppings."""
-        if self.size == 'small':
-            price = 120 + 20*len(self.toppings)
-        elif self.size == 'medium':
-            price = 200 + 20*len(self.toppings)
-        elif self.size == 'large':
-            price = 280 + 20*len(self.toppings)
-        else:
-            raise ValueError("Unknown pizza size "+self.size)
+        price = self.size.price + 20*len(self.toppings)
         return price
     
     def add_topping(self, topping):
@@ -28,7 +34,7 @@ class Pizza:
     def __str__(self) -> str:
         # create printable description of the pizza such as
         # "small pizza with muschroom" or "small plain pizza"
-        description = self.size
+        description = str(self.size)
         if self.toppings:
             description += " pizza with "+ ", ".join(self.toppings)
         else:
