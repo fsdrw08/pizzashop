@@ -1,3 +1,6 @@
+SMALL = 'small'
+MEDIUM = 'medium'
+LARGE = 'large'
 class Pizza:
     """A pizza with a size and optional toppings."""
 
