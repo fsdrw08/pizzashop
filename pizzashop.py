@@ -11,14 +11,7 @@ from pizza import LARGE, MEDIUM, SMALL, Pizza
 def order_pizza(pizza: Pizza):
     """Print a description of a pizza, along with its price."""
 
-    # create printable description of the pizza such as
-    # "small pizza with muschroom" or "small plain pizza"
-    description = pizza.size
-    if pizza.toppings:
-        description += " pizza with "+ ", ".join(pizza.toppings)
-    else:
-        description += " plain cheeze pizza"
-    print(f"A {description}")
+    print(f"A {str(pizza)}")
     print("Price:", pizza.get_price())
 
 
